@@ -35,11 +35,13 @@ Data → Strategy → Portfolio → Trades → Performance
 
 📂 Project Structure
 
-├── trading_system.ipynb     # Main notebook
-├── trading.log              # Runtime logs
-├── portfolio_state.json     # Saved portfolio data
-├── README.md                # Project documentation
-└── requirements.txt         # Dependencies
+├── trading_system.py            # Main Python script (recommended)
+├── Multi factor equity strategy.ipynb  # Jupyter notebook version
+├── requirements.txt            # Python dependencies
+├── .gitignore                  # Git ignore rules
+├── trading.log                 # Runtime logs (auto-generated)
+├── portfolio_state.json        # Saved portfolio data (auto-generated)
+└── README.md                   # Project documentation
 
 🛠️ Tech Stack
 1. Python 3.8+
@@ -50,28 +52,59 @@ Data → Strategy → Portfolio → Trades → Performance
 6. schedule
 7. logging
 
-1️⃣ Create the Trading Engine
+🚀 Quick Start
 
-tickers = [
-    'AAPL', 'MSFT', 'GOOGL', 'AMZN',
-    'META', 'TSLA', 'NVDA', 'JPM'
-]
+**Installation:**
+```bash
+# Clone the repository
+git clone https://github.com/Cos2ubh/Multi-factor-equity-strategy-tradsystem.git
+cd Multi-factor-equity-strategy-tradsystem
 
+# Install dependencies
+pip install -r requirements.txt
+```
+
+**Run the Trading System:**
+
+Option 1: Python Script (Recommended)
+```bash
+python trading_system.py
+```
+
+Option 2: Jupyter Notebook
+```bash
+jupyter notebook "Multi factor equity strategy.ipynb"
+```
+
+📝 Usage Examples
+
+**Basic Usage:**
+```python
+from trading_system import LiveStrategyEngine, plot_equity_curve, calculate_performance_metrics
+
+# Define tickers
+tickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'TSLA', 'NVDA', 'JPM']
+
+# Create trading engine
 engine = LiveStrategyEngine(
     tickers=tickers,
     initial_capital=100000,
     rebalance_frequency='monthly'
 )
 
-2️⃣ Run a Trading Cycle
-
+# Run a single trading cycle
 engine.run_trading_cycle()
-This will Fetch latest prices, Calculate signals, Rebalance the portfolio (if needed), Log trades and portfolio value
 
-3️⃣ View Performance
-
+# View performance
 plot_equity_curve(engine.portfolio)
 calculate_performance_metrics(engine.portfolio)
+```
+
+**Start Live Paper Trading:**
+```python
+# This will run continuously, checking every 60 minutes
+engine.start_live_trading(check_interval_minutes=60)
+```
 
 📊 Example Log Output
 
